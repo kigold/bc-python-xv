@@ -6,4 +6,7 @@ def find_max_min(num):
 			min = i
 		if i>max:
 			max = i
-	return [min,max]
+        if max == min :
+                return min
+        else:
+                return [min,max]
