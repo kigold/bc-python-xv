@@ -16,24 +16,26 @@ class NotesApplication(object):
 			print ""
 
 	def get(self, note_id):
-		return self.notes[note_id]
+		return self.notes[note_id-1]
 
 	def search(self,search_text):
-		if search_text in self.note_content:
-			print "Showingresultsforsearch ", search_text
+		print "Showing results for search ", "'",search_text,"'"
 			
-			for idx in range(1, len(self.note)+1):
+		for idx in range(1, len(self.notes)+1):
+			if search_text in self.notes[idx-1]:
 				print "Note ID: ",
 				print idx,
 				print self.notes[idx-1]
 				print "By Author ", self.author
 				print ""
+		else:
+			print "WTF"
 
 	def delete(self,note_id):
-		self.note_content.remove(self.note_content[note_id])
+		self.note_content.remove(self.notes[note_id])
 
 	def edit(self, note_id, new_contenet):
-		self.note_content[note_id] = new_contenet
+		self.notes[note_id] = new_contenet
 
 #Testing
 notes = NotesApplication("kingsley")
@@ -44,7 +46,9 @@ notes.create("Day three at Andela BC")
 notes.create("Day four at Andela BC")
 notes.create("Day five at Andela BC")
 
-notes.list()
-notes.get(1)
+#notes.list()
+#print notes.get(1)
+notes.search("two")
+
 
 
