@@ -35,6 +35,7 @@ class NotesApplication(object):
 	def edit(self, note_id, new_contenet):
 		self.note_content[note_id] = new_contenet
 
+#Testing
 notes = NotesApplication("kingsley")
 test = ""
 notes.create("Day one at Andela BC")
