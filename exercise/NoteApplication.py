@@ -28,17 +28,15 @@ class NotesApplication(object):
 				print self.notes[idx-1]
 				print "By Author ", self.author
 				print ""
-		else:
-			print "WTF"
-
+		
 	def delete(self,note_id):
-		self.note_content.remove(self.notes[note_id])
+		self.notes.remove(self.notes[note_id-1])
 
 	def edit(self, note_id, new_contenet):
-		self.notes[note_id] = new_contenet
+		self.notes[note_id-1] = new_contenet
 
 #Testing
-notes = NotesApplication("kingsley")
+'''notes = NotesApplication("kingsley")
 test = ""
 notes.create("Day one at Andela BC")
 notes.create("Day two at Andela BC")
@@ -47,8 +45,12 @@ notes.create("Day four at Andela BC")
 notes.create("Day five at Andela BC")
 
 #notes.list()
-#print notes.get(1)
-notes.search("two")
+print notes.get(3)
+notes.search("khvk")
+#notes.delete(5)
 
+notes.edit(5, "Andela Day 5, Was a great day, Hectic, But we are Greatful to God")
 
+notes.list()
+'''
 
