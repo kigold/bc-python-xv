@@ -21,6 +21,70 @@ class NoteApplicationTestSuit(unittest.TestCase):
 		notes = NotesApplication()
 		self.assertEqual(notes.list(), None, msg="List not empty")
 
+	def test_empty_get(self):
+		notes = NotesApplication()
+		self.assertEqual(notes.get(), None, msg="List not empty")
+
+	def test_get_negative_index(self):
+		notes = NotesApplication()
+		self.assertEqual(notes.get(-4), None, msg="Supposed to be out of range or negative")
+
+	def test_get_negative_index1(self):
+		notes = NotesApplication()
+		self.assertEqual(notes.get(-1004), None, msg="Supposed to be out of range or negative")
+
+	def test_get_negative_index2(self):
+		notes = NotesApplication()
+		self.assertEqual(notes.get(-100400000000), None, msg="Supposed to be out of range or negative")
+
+	def test_alpha(self):
+		notes = NotesApplication()
+		self.assertEqual(notes.get('sd'), None, msg="Supposed to be out of alphabee")
+
+	def test_get_boolean_as_index(self):
+		notes = NotesApplication()
+		self.assertEqual(notes.get(True), None, msg="List not empty")
+
+	def test_search_empty_field(self):
+		notes = NotesApplication()
+		notes.create("Day one at Andela BC")
+		notes.create("Day two at Andela BC")
+		self.assertEqual(notes.search(), None, msg="Supposed to be an empty return")
+
+	def test_search(self):
+		notes = NotesApplication()
+		notes.create("Day one at Andela BC")
+		notes.create("Day two at Andela BC")
+		self.assertEqual(notes.search("two"), 'Day two at Andela BC', msg="")
+
+	def test_search1(self):
+		notes = NotesApplication()
+		notes.create("Day one at Andela BC")
+		notes.create("Day two at Andela BC")
+		self.assertEqual(notes.search("one"), None, msg="")
+
+	def test_search_capitalsed_text(self):
+		notes = NotesApplication()
+		notes.create("Day one at Andela BC")
+		notes.create("Day two at Andela BC")
+		self.assertEqual(notes.search("TWO"), None, msg="Supposed to be return same result for 'two'")
+
+	def test_search_missed_case(self):
+		notes = NotesApplication()
+		notes.create("Day one at Andela BC")
+		notes.create("Day two at Andela BC")
+		self.assertEqual(notes.search("tWo"), None, msg="Supposed to be return same result for 'two'")
+
+	def test_delete_empty_argument(self):
+		notes = NotesApplication()
+		notes.create("Day one at Andela BC")
+		notes.create("Day two at Andela BC")
+		self.assertEqual(notes.delete("tWo"), None, msg="Supposed to be return same result for 'two'")
+
+
+
+
+
 
 
 if __name__ =="__main__":

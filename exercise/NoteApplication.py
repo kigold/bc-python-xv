@@ -4,7 +4,7 @@ class NotesApplication(object):
 		self.author = author
 
 	def create(self,note_content=None):
-		if note_content:
+		if note_content != None:
 			self.notes.append(note_content)
 		else:
 			print "Please Enter the name of the note when creating"
@@ -19,22 +19,23 @@ class NotesApplication(object):
 			print "By Author ", self.author
 			print ""
 
-	def get(self, note_id):
-		return self.notes[note_id-1]
+	def get(self, note_id = 0):
+		if note_id and len(self.notes) >= note_id and note_id >= 0:
+			return self.notes[abs(note_id-1)]
 
-	def search(self,search_text):
-		print "Showing results for search ", "'",search_text,"'"
-			
-		for idx in range(1, len(self.notes)+1):
-			if search_text in self.notes[idx-1]:
-				print "Note ID: ",
-				print idx,
-				print self.notes[idx-1]
-				print "By Author ", self.author
-				print ""
-		
-	def delete(self,note_id):
-		self.notes.remove(self.notes[note_id-1])
+	def search(self,search_text=None):
+		if search_text != None:
+			result= "Showing results for search " + "'" + str(search_text) +"'"
+
+					
+			for idx in range(1, len(self.notes)+1):
+				if search_text.lower() in self.notes[idx-1].lower():
+					result +=  "\nNote ID: " + str(idx) + "\n" + str(self.notes[idx-1]) + "\n\n" + "By Author " + str(self.author)
+		return result
+
+	def delete(self,note_id=None):
+		if note_id != None and len(self.notes) >= note_id:
+			self.notes.remove(self.notes[note_id-1])
 
 	def edit(self, note_id, new_contenet):
 		self.notes[note_id-1] = new_contenet
@@ -42,11 +43,7 @@ class NotesApplication(object):
 #Testing
 '''notes = NotesApplication("kingsley")
 test = ""
-notes.create("Day one at Andela BC")
-notes.create("Day two at Andela BC")
-notes.create("Day three at Andela BC")
-notes.create("Day four at Andela BC")
-notes.create("Day five at Andela BC")
+
 
 #notes.list()
 print notes.get(3)
@@ -57,7 +54,20 @@ notes.edit(5, "Andela Day 5, Was a great day, Hectic, But we are Greatful to God
 
 notes.list()
 '''
+
 notes = NotesApplication()
-notes.list()
+notes.create("Day one at Andela BC")
+notes.create("Day two at Andela BC")
+notes.create("Day three at Andela BC")
+notes.create("Day four at Andela BC")
+notes.create("Day five at Andela BC")
+
+print len(notes.notes)
+notes.get(10)
+notes.search("four")
+print notes.search("FOUR")
+
+
+
 
 
