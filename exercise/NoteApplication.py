@@ -1,10 +1,14 @@
 class NotesApplication(object):
-	def __init__(self,author):
+	def __init__(self,author = "Guest"):
 		self.notes = []
 		self.author = author
 
-	def create(self,note_content):
+	def create(self,note_content=None):
+		if note_content:
 			self.notes.append(note_content)
+		else:
+			print "Please Enter the name of the note when creating"
+			return "Please Enter the name of the note when creating"
 
 	def list(self):
 		
@@ -53,4 +57,7 @@ notes.edit(5, "Andela Day 5, Was a great day, Hectic, But we are Greatful to God
 
 notes.list()
 '''
+notes = NotesApplication()
+notes.list()
+
 
