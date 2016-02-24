@@ -1,50 +1,54 @@
 import unittest
-from NoteApplication import NotesApplication
+
+from note_application import NotesApplication
+
+
 class NoteApplicationTestSuit(unittest.TestCase):
-	def test_note_instance(self):
-		notes = NotesApplication("kingsLey")
-		self.assertIsInstance(notes,NotesApplication,msg="The object must be that of NoteApplication")
 
-	def test_obj_type(self):
-		notes = NotesApplication("kingsley")
-		self.assertTrue(type(notes) is NotesApplication, msg="The object should be a NotesApplication")
+    def test_note_instance(self):
+        notes = NotesApplication("kingsLey")
+        self.assertIsInstance(notes,NotesApplication,msg="The object must be that of NoteApplication")
 
-	def test_default_author(self):
-		notes = NotesApplication()
-		self.assertEqual(notes.author, "Guest", msg="deault name is not set")
+    def test_obj_type(self):
+        notes = NotesApplication("kingsley")
+        self.assertTrue(type(notes) is NotesApplication, msg="The object should be a NotesApplication")
 
-	def test_define_author(self):
-		notes = NotesApplication("kingsley")
-		self.assertEqual(notes.author, "kingsley")
+    def test_default_author(self):
+        notes = NotesApplication()
+        self.assertEqual(notes.author, "Guest", msg="deault name is not set")
 
-	def test_author_as_number(self):
-		notes = NotesApplication(23)
-		self.assertEqual(notes.author, 23, msg="deault name is not set")	
+    def test_define_author(self):
+        notes = NotesApplication("kingsley")
+        self.assertEqual(notes.author, "kingsley")
 
-	def test_empty_create(self):
-		notes = NotesApplication()
-		self.assertEqual(notes.create(), "Please Enter the name of the note when creating", msg="create parameter not initialised")
+    def test_author_as_number(self):
+        notes = NotesApplication(23)
+        self.assertEqual(notes.author, 23, msg="deault name is not set")	
 
-	def test_create_number_as_arg(self):
-		notes = NotesApplication()
-		self.assertEqual(notes.create(23), None, msg="create not successful")
+    def test_empty_create(self):
+        notes = NotesApplication()
+        self.assertEqual(notes.create(), "Please Enter the name of the note when creating", msg="create parameter not initialised")
 
-	def test_create_number_as_arg(self):
-		notes = NotesApplication("kigold")
-		notes.create("this is y am Hot")
-		self.assertEqual(len(notes.notes),1)
+    def test_create_number_as_arg(self):
+        notes = NotesApplication()
+        self.assertEqual(notes.create(23), None, msg="create not successful")
 
-	def test_empty_list(self):
-		notes = NotesApplication()
-		self.assertEqual(notes.list(), None, msg="List not empty")
+    def test_create_number_as_arg(self):
+        notes = NotesApplication("kigold")
+        notes.create("this is y am Hot")
+        self.assertEqual(len(notes.notes),1)
 
-	def test_empty_get(self):
-		notes = NotesApplication()
-		self.assertEqual(notes.get(), None, msg="List not empty")
+    def test_empty_list(self):
+        notes = NotesApplication()
+        self.assertEqual(notes.list(), None, msg="List not empty")
 
-	def test_get_negative_index(self):
-		notes = NotesApplication()
-		self.assertEqual(notes.get(-4), None, msg="Supposed to be out of range or negative")
+    def test_empty_get(self):
+        notes = NotesApplication()
+        self.assertEqual(notes.get(), None, msg="List not empty")
+
+    def test_get_negative_index(self):
+        notes = NotesApplication()
+        self.assertEqual(notes.get(-4), None, msg="Supposed to be out of range or negative")
 
 	def test_get_negative_index1(self):
 		notes = NotesApplication()
@@ -131,7 +135,7 @@ class NoteApplicationTestSuit(unittest.TestCase):
 		notes.create("Day one at Andela BC")
 		notes.create("Day two at Andela BC")
 		notes.edit(2, "it was fun")
-		self.assertEqual(notes.get(2),"Day two at Andela BC it was fun")
+		self.assertEqual(notes.notes[1],"Day two at Andela BC it was fun")
 
 
 
